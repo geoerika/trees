@@ -46,6 +46,20 @@ class Employee {
     return totalEmployees;
 
   }
+
+  employeeWithName(name) {
+
+    let employee = {};
+
+    if (this.name === name) {
+      employee = this;
+    } else {
+      for (const subordinate of this.subordinates) {
+        employee = subordinate.employeeWithName(name);
+      }
+    }
+    return employee;
+  }
 }
 
 const ada = new Employee("Ada", "CEO", 3000000.00);
@@ -63,6 +77,7 @@ craig.addSubordinate(ali);
 craig.addSubordinate(simone);
 
 // console.log(ada.employeesThatMakeOver(418401));
-console.log(craig.totalEmployees);
-console.log(ada.totalEmployees);
+// console.log(craig.totalEmployees);
+// console.log(ada.totalEmployees);
+console.log(ada.employeeWithName('Phil'));
 
